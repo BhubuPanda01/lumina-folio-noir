@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Send } from "lucide-react";
 import { motion } from "framer-motion";
 import { useToast } from "@/hooks/use-toast";
+import emailjs from "emailjs-com";
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -25,22 +26,44 @@ const ContactForm = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    
-    toast({
-      title: "Message sent successfully!",
-      description: "I'll get back to you as soon as possible.",
-    });
-    
-    setFormData({
-      name: "",
-      email: "",
-      subject: "",
-      message: "",
-    });
-    
-    setIsSubmitting(false);
+    try {
+      // Send email using EmailJS
+      const templateParams = {
+        to_email: "bhubuu5@gmail.com",
+        from_name: formData.name,
+        from_email: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+      };
+      
+      await emailjs.send(
+        "YOUR_SERVICE_ID", // Replace with your EmailJS service ID
+        "YOUR_TEMPLATE_ID", // Replace with your EmailJS template ID
+        templateParams
+      );
+
+      toast({
+        title: "Message sent successfully!",
+        description: "Thank you for your message. I'll get back to you soon.",
+      });
+      
+      // Reset form
+      setFormData({
+        name: "",
+        email: "",
+        subject: "",
+        message: "",
+      });
+    } catch (error) {
+      console.error("Error sending message:", error);
+      toast({
+        title: "Error sending message",
+        description: "Please try again later or contact directly via email.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -66,7 +89,7 @@ const ContactForm = () => {
           required
           value={formData.name}
           onChange={handleChange}
-          className="w-full px-4 py-3 bg-muted border border-border focus:border-gold focus:outline-none focus:ring-1 focus:ring-gold rounded-md transition-all duration-300"
+          className="w-full px-4 py-3 bg-muted border border-border focus:border-lavender focus:outline-none focus:ring-1 focus:ring-lavender rounded-md transition-all duration-300"
         />
       </motion.div>
 
@@ -85,7 +108,7 @@ const ContactForm = () => {
           required
           value={formData.email}
           onChange={handleChange}
-          className="w-full px-4 py-3 bg-muted border border-border focus:border-gold focus:outline-none focus:ring-1 focus:ring-gold rounded-md transition-all duration-300"
+          className="w-full px-4 py-3 bg-muted border border-border focus:border-lavender focus:outline-none focus:ring-1 focus:ring-lavender rounded-md transition-all duration-300"
         />
       </motion.div>
 
@@ -104,7 +127,7 @@ const ContactForm = () => {
           required
           value={formData.subject}
           onChange={handleChange}
-          className="w-full px-4 py-3 bg-muted border border-border focus:border-gold focus:outline-none focus:ring-1 focus:ring-gold rounded-md transition-all duration-300"
+          className="w-full px-4 py-3 bg-muted border border-border focus:border-lavender focus:outline-none focus:ring-1 focus:ring-lavender rounded-md transition-all duration-300"
         />
       </motion.div>
 
@@ -123,7 +146,7 @@ const ContactForm = () => {
           value={formData.message}
           onChange={handleChange}
           rows={6}
-          className="w-full px-4 py-3 bg-muted border border-border focus:border-gold focus:outline-none focus:ring-1 focus:ring-gold rounded-md transition-all duration-300"
+          className="w-full px-4 py-3 bg-muted border border-border focus:border-lavender focus:outline-none focus:ring-1 focus:ring-lavender rounded-md transition-all duration-300"
         />
       </motion.div>
 

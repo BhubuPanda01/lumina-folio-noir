@@ -19,12 +19,15 @@ const PageTransition: React.FC<PageTransitionProps> = ({ children }) => {
       className="min-h-screen relative"
     >
       <div className="animated-bg">
-        <div className="particle"></div>
-        <div className="particle"></div>
-        <div className="particle"></div>
-        <div className="particle"></div>
-        <div className="glow"></div>
-        <div className="glow"></div>
+        <div className="particle lavender-particle"></div>
+        <div className="particle lavender-particle"></div>
+        <div className="particle lavender-particle"></div>
+        <div className="particle lavender-particle"></div>
+        <div className="particle lavender-light-particle"></div>
+        <div className="particle lavender-light-particle"></div>
+        <div className="glow lavender-glow"></div>
+        <div className="glow lavender-glow"></div>
+        <div className="glow lavender-light-glow"></div>
       </div>
       {children}
     </motion.div>

@@ -3,14 +3,22 @@ import { motion } from "framer-motion";
 import PageTransition from "@/components/PageTransition";
 import ContactForm from "@/components/ContactForm";
 import { Mail, MapPin, Phone } from "lucide-react";
+import { useEffect } from "react";
+import emailjs from "emailjs-com";
 
 const Contact = () => {
+  useEffect(() => {
+    // Initialize EmailJS with your user ID
+    // Replace "YOUR_USER_ID" with your actual EmailJS user ID
+    emailjs.init("YOUR_USER_ID");
+  }, []);
+
   const contactInfo = [
     {
       icon: Mail,
       title: "Email",
-      details: "hello@example.com",
-      link: "mailto:hello@example.com"
+      details: "bhubuu5@gmail.com",
+      link: "mailto:bhubuu5@gmail.com"
     },
     {
       icon: Phone,
@@ -38,7 +46,7 @@ const Contact = () => {
             className="text-center max-w-3xl mx-auto"
           >
             <h1 className="text-4xl md:text-5xl font-playfair font-bold mb-6">
-              Get In <span className="text-gold">Touch</span>
+              Get In <span className="text-lavender">Touch</span>
             </h1>
             <p className="text-xl text-foreground/80 leading-relaxed">
               Have a project in mind or want to discuss a potential collaboration?
@@ -81,11 +89,11 @@ const Contact = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
-                    className="glass-card p-6 hover:border-gold/30 transition-all duration-300"
+                    className="glass-card p-6 hover:border-lavender/30 transition-all duration-300"
                   >
                     <div className="flex items-center">
                       <div className="h-10 w-10 rounded-full bg-secondary flex items-center justify-center mr-4">
-                        <info.icon size={20} className="text-gold" />
+                        <info.icon size={20} className="text-lavender" />
                       </div>
                       <div>
                         <h3 className="font-medium mb-1">{info.title}</h3>
@@ -93,7 +101,7 @@ const Contact = () => {
                           href={info.link}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-gold hover:text-gold-light transition-colors duration-200"
+                          className="text-lavender hover:text-lavender-light transition-colors duration-200"
                         >
                           {info.details}
                         </a>
@@ -115,7 +123,7 @@ const Contact = () => {
                       initial={{ opacity: 0, scale: 0 }}
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ duration: 0.3, delay: 0.7 + index * 0.1 }}
-                      className="h-10 w-10 rounded-full bg-secondary flex items-center justify-center text-foreground/80 hover:bg-gold hover:text-noir-dark transition-colors duration-300"
+                      className="h-10 w-10 rounded-full bg-secondary flex items-center justify-center text-foreground/80 hover:bg-lavender hover:text-noir-dark transition-colors duration-300"
                     >
                       {platform.charAt(0)}
                     </motion.a>
