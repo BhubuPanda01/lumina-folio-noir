@@ -11,7 +11,7 @@ interface SkillBarProps {
 const SkillBar = ({ 
   skill, 
   percentage,
-  color = "#D4AF37",
+  color = "#9370DB",
   index 
 }: SkillBarProps) => {
   return (

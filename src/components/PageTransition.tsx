@@ -13,11 +13,19 @@ const PageTransition: React.FC<PageTransitionProps> = ({ children }) => {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
       transition={{
-        duration: 0.6,
+        duration: 0.8,
         ease: [0.22, 1, 0.36, 1],
       }}
-      className="min-h-screen"
+      className="min-h-screen relative"
     >
+      <div className="animated-bg">
+        <div className="particle"></div>
+        <div className="particle"></div>
+        <div className="particle"></div>
+        <div className="particle"></div>
+        <div className="glow"></div>
+        <div className="glow"></div>
+      </div>
       {children}
     </motion.div>
   );
